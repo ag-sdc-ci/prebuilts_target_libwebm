@@ -1,0 +1,77 @@
+package {
+    default_applicable_licenses: ["external_libwebm_license"],
+}
+
+license {
+    name: "external_libwebm_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-BSD",
+    ],
+    license_text: [
+        "LICENSE.TXT",
+        "PATENTS.TXT",
+    ],
+}
+
+prebuilt_apex {
+    name: "org.blisslabs.ag.libwebm",
+    apex_name: "org.blisslabs.ag.libwebm",
+    source_apex_name: "org.blisslabs.ag.libwebm",
+    arch: {
+        x86_64: {
+            src: "org.blisslabs.ag.libwebm.apex",
+        },
+    },
+    filename: "org.blisslabs.ag.libwebm.apex",
+    prefer: true,
+    installable: true,
+}
+
+cc_library {
+    name: "libwebm_mkvmuxer",
+    host_supported: true,
+    vendor_available: true,
+    product_available: true,
+    recovery_available: true,
+    export_include_dirs: ["."],
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+    srcs: [
+        "mkvmuxer/mkvmuxer.cc",
+        "mkvmuxer/mkvmuxerutil.cc",
+        "mkvmuxer/mkvwriter.cc",
+    ],
+    min_sdk_version: "29",
+    target: {
+        darwin: {
+            enabled: false,
+        },
+    },
+}
+
+cc_library_static {
+    name: "libwebm_mkvparser",
+    host_supported: true,
+    vendor_available: true,
+    product_available: true,
+    recovery_available: true,
+    export_include_dirs: ["."],
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+    srcs: ["mkvparser/mkvparser.cc"],
+    min_sdk_version: "29",
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.media",
+    ],
+    target: {
+        darwin: {
+            enabled: false,
+        },
+    },
+}

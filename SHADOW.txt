@@ -1,0 +1,6 @@
+shadow prebuilt repo: libwebm (target)
+  upstream: external/libwebm
+  api-level: 32 (branch 32-20261016)
+  blobs: org.blisslabs.ag.libwebm.apex org.blisslabs.ag.libwebm.dev.apex org.blisslabs.ag.libwebm.doc.apex
+  dev-src: matching upstream external/libwebm/Android.bp providing libwebm_mkvmuxer and libwebm_mkvparser
+  date: 2026-10-16
